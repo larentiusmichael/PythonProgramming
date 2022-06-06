@@ -1,0 +1,6 @@
+4	Noris Ismail	NI4590	Teacher is very nice
+5	Tanveer Khaleel	TV0981	Good teacher
+3	Abubakar Santuraki	AS7841	Teacher is not that good
+1	Akansha Mandhana	AM7714	Coach is not polite
+2	Palvinderjit Singh	PS6902	Teacher is quite good
+5	Tanveer Khaleel	TV0981	Very Excellent Teacher

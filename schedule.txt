@@ -1,0 +1,30 @@
+Kinrara	Swimming	KRSW001	Saturday, 07:00 - 09:00
+Bukit Jalil	Basketball	BJBB001	Tuesday, 10:00 - 12:00
+Bukit Jalil	Cricket	BJCR001	Monday, 15:00 - 17:00
+Bukit Jalil	Tennis	BJTN001	Wednesday, 20:00 - 22:00
+Kinrara	Archery	KRAC001	Thursday, 12:00 - 14:00
+Cheras	Volleyball	CSVB001	Friday, 16:00 - 18:00
+Cheras	Table Tennis	CSTT001	Saturday, 15:00 - 17:00
+Bukit Jalil	Badminton	BJBD001	Sunday, 17:00 - 19:00
+Bukit Jalil	Swimming	BJSW001	Monday, 17:00 - 19:00
+Bukit Jalil	Football	BJFB001	Tuesday, 08:00 - 10:00
+Bukit Jalil	Archery	BJAC001	Wednesday, 16:00 - 18:00
+Bukit Jalil	Gymnastics	BJGM001	Thursday, 07:00 - 09:00
+Bukit Jalil	Volleyball	BJVB001	Friday, 18:00 - 20:00
+Bukit Jalil	Table Tennis	BJTT001	Sunday, 09:00 - 11:00
+Kinrara	Badminton	KRBD001	Monday, 13:00 - 15:00
+Kinrara	Football	KRFB001	Tuesday, 17:00 - 19:00
+Kinrara	Gymnastics	KRGM001	Wednesday, 11:00 - 13:00
+Kinrara	Volleyball	KRVB001	Thursday, 16:00 - 18:00
+Kinrara	Basketball	KRBB001	Friday, 06:00 - 08:00
+Kinrara	Cricket	KRCR001	Saturday, 14:00 - 16:00
+Kinrara	Tennis	KRTN001	Sunday, 15:00 - 17:00
+Kinrara	Table Tennis	KRTT001	Monday, 21:00 - 23:00
+Cheras	Swimming	CSSW001	Tuesday, 16:00 - 18:00
+Cheras	Badminton	CSBD001	Wednesday, 18:00 - 20:00
+Cheras	Football	CSFB001	Thursday, 15:00 - 17:00
+Cheras	Archery	CSAC001	Friday, 10:00 - 12:00
+Cheras	Gymnastics	CSGM001	Saturday, 15:00 - 17:00
+Cheras	Basketball	CSBB001	Sunday, 11:00 - 13:00
+Cheras	Cricket	CSCR001	Monday, 14:00 - 16:00
+Cheras	Tennis	CSTN001	Thursday, 13:00 - 15:00

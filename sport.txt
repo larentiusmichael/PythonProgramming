@@ -1,0 +1,30 @@
+Bukit Jalil	BJ	Cricket	BJCR	50
+Bukit Jalil	BJ	Tennis	BJTN	45
+Kinrara	KR	Swimming	KRSW	30
+Kinrara	KR	Archery	KRAC	80
+Cheras	CS	Volleyball	CSVB	25
+Cheras	CS	Table Tennis	CSTT	60
+Bukit Jalil	BJ	Basketball	BJBB	55
+Bukit Jalil	BJ	Badminton	BJBD	45
+Bukit Jalil	BJ	Swimming	BJSW	30
+Bukit Jalil	BJ	Football	BJFB	15
+Bukit Jalil	BJ	Archery	BJAC	80
+Bukit Jalil	BJ	Gymnastics	BJGM	65
+Bukit Jalil	BJ	Volleyball	BJVB	25
+Bukit Jalil	BJ	Table Tennis	BJTT	60
+Kinrara	KR	Badminton	KRBD	45
+Kinrara	KR	Football	KRFB	15
+Kinrara	KR	Gymnastics	KRGM	65
+Kinrara	KR	Volleyball	KRVB	25
+Kinrara	KR	Basketball	KRBB	55
+Kinrara	KR	Cricket	KRCR	50
+Kinrara	KR	Tennis	KRTN	45
+Kinrara	KR	Table Tennis	KRTT	60
+Cheras	CS	Swimming	CSSW	30
+Cheras	CS	Badminton	CSBD	45
+Cheras	CS	Football	CSFB	15
+Cheras	CS	Archery	CSAC	80
+Cheras	CS	Gymnastics	CSGM	65
+Cheras	CS	Basketball	CSBB	55
+Cheras	CS	Cricket	CSCR	50
+Cheras	CS	Tennis	CSTN	45

@@ -1,0 +1,33 @@
+450	Tanveer Khaleel	TV0981
+200	Abubakar Santuraki	AS7841
+100	Palvinderjit Singh	PS6902
+375	Noris Ismail	NI4590
+200	Subasinya Krishnan	SK2096
+400	Akansha Mandhana	AM7714
+475	Nurul Farhanah	NF9855
+300	Shailaja Kumar	SK6781
+350	Shailaja Kumar	SR8710
+425	Atiyah Binti Abdul Hadi	AB9817
+445	Ang Hui Yee	AY8679
+132	Francis Loh	FL9781
+500	Han Kok Siew	HK1853
+385	Harsha Rao	HR5243
+265	Ian James	IJ8625
+190	Khong Yoke Ling	KY5290
+275	Ng Li Shin	NL9989
+200	Ooi Aik Khong	OK5381
+300	Qusay Sabah Ishaq	QI2389
+400	Ragunathan Ayyavoo	RA3232
+495	Vijaya Paul Reddy	VP9258
+280	Yee Mun Lok	YL7812
+500	Michael Richard Pence	MP0002
+500	Donald John Trump	DT0001
+500	Joko Widodo	JW0001
+500	Maaruf Amin	MA0001
+500	Xi Jinping	XJ0001
+500	Mahathir Mohammad	MM0001
+390	Suryani Shinta Wibowo	SS1787
+100	Andy Panggabean	AP7876
+300	Duma Hutahean	DH8981
+500	Tanveer Shaikh	TS1234
+200	John	TS1234

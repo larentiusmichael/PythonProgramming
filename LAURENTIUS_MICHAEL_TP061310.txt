@@ -1,0 +1,980 @@
+main_menu_function
+Begin
+	Declare opt
+	Display "\t\t*****WELCOME TO REAL CHAMPIONS SPORT  ACADEMY*****\nSelect User Type:\n1. Admin\n2. Registered Student\n3. Non Registered Student"
+	Read opt
+	While (opt > 3 OR opt < 1)
+		Display "Wrong Choice!\nKindly select user type again:\n1. Admin\n2. Registered Student\n3. Non Registered Student"
+		Read opt
+	End while
+	if (opt == 1)
+		call admin_function
+	else if (opt == 2)
+		call student_function
+	else
+		call nonstudent_function
+	End if
+End
+
+
+
+admin_function
+Begin
+	Declare admin_user
+	Display "\t\tWelcome to Admin. Please login to access the functionalities!\nEnter your username: "
+	Read admin_user
+	call admin_first_login(admin_user)
+End
+
+
+admin_first_login(check_username)
+Begin
+	Declare admin_pass
+	if (check_username == "Admin")
+		Display "Enter your password: "
+		Read admin_pass
+		call admin_second_login(admin_pass)
+	else
+		Display "Username not found"
+	End if
+End
+
+
+admin_second_login(check_password)
+Begin
+	if (check_password == "12345")
+		call admin_second_function
+	else
+		Display "Your Password is Incorrect"
+	End if
+End
+
+
+admin_second_function
+Begin
+	Declare admin_option
+	Display "Select one specific function:\n1. Add Record\n2. Display All Records\n3. Search Specific Record\n4. Sort and Display Record\n5. Modify Record\n6. Exit"
+	Read admin_option
+	While (admin_option > 6 OR admin_option < 1)
+		Display "Wrong Choice!\nSelect one specific function again:\n1. Add Record\n2. Display All Records\n3. Search Specific Record\n4. Sort and Display Record\n5. Modify Record\n6. Exit"
+		Read admin_option
+	End while
+	if (admin_option == 1)
+		call add_admin_function
+	else if (admin_option == 2)
+		call display_admin_function
+	else if (admin_option == 3)
+		call search_admin_function
+	else if (admin_option == 4)
+		call sort_admin_function
+	else if (admin_option == 5)
+		call modify_admin_function
+	else
+		call main_menu_function
+	End if
+End
+
+
+add_admin_function
+Begin
+	Declare add_admin_option
+	Display "Add Records of:\n1. Coach\n2. Sport\n3. Sport Schedule"
+	Read add_admin_option
+	While (add_admin_option > 3 OR add_admin_option < 1)
+		Display "Wrong Choice!\nAdd Records of:\n1. Coach\n2. Sport\n3. Sport Schedule"
+		Read add_admin_option
+	End while
+	if (add_admin_option == 1)
+		call coach_add_admin_function
+	else if (add_admin_option == 2)
+		call sport_add_admin_function
+	else
+		call schedule_add_admin_function
+	End if
+End
+
+coach_add_admin_function
+Begin
+	Declare coach_name, coach_ID, coach_join, coach_terminate, coach_phone, coach_address, coach_center, coach_sport
+	Open File "coach.txt" For Append Mode
+	Display "Enter Coach Details: "
+	Display "Enter Coach Name: \nEnter Coach ID: \nEnter Coach Date Joined: \nEnter Coach Date Terminated: \nEnter Coach Phone Number: \nEnter Coach Address: \nEnter Coach Center Name (Bukit Jalil, Kinrara, Cheras): \nEnter Coach Sport Name (Swimming/Badminton/Football/Archery/Gymnastics/Volleyball/Basketball/Cricket/Tennis/Table Tennis): "
+	Read coach_name, coach_ID, coach_join, coach_terminate, coach_phone, coach_address, coach_center, coach_sport
+	Add coach_name+"\t"+coach_ID+"\t"+coach_join+"\t"+coach_terminate+"\t"+coach_phone+"\t"+coach_address+"\t"+coach_center+"\t"+coach_sport+"\n" in coach.txt
+	call coach_pay_admin_function(coach_name,coach_ID)
+	Close File
+End
+
+coach_pay_admin_function(name_coach,ID_coach)
+Begin
+	Declare coach_hourlyrate
+	nama_guru = name_coach
+	ID_guru = ID_coach
+	Open File "pay.txt" For Append Mode
+	Display "Enter Coach Hourly Rate (RM100/h - RM500/h): "
+	Read coach_hourlyrate
+	Add coach_hourlyrate+"\t"+nama_guru+"\t"+ID_guru+"\n" in pay.txt
+	Close File
+End
+
+sport_add_admin_function
+Begin
+	Declare sportcenter_name, sportcenter_ID, sport_name, sport_ID, sport_fee
+	Open File "sport.txt" For Append Mode
+	Display "Enter Sport Details: "
+	Display "Enter Sport Center Name (Bukit Jalil, Kinrara, Cheras): \nEnter Sport Center ID (Bukit Jalil - BJ, Kinrara - KR, Cheras - CS): \nEnter Sport Name (Swimming/Badminton/Football/Archery/Gymnastics/Volleyball/Basketball/Cricket/Tennis/Table Tennis): \nEnter Sport ID: \nEnter Sport Fee (RM/month): "
+	Read sportcenter_name, sportcenter_ID, sport_name, sport_ID, sport_fee
+	Add sportcenter_name+"\t"+sportcenter_ID+"\t"+sport_name+"\t"+sport_ID+"\t"+sport_fee+"\n" in sport.txt 
+	Close File
+End
+
+schedule_add_admin_function
+Begin
+	Declare sportcenter_name, sport_name, sport_ID, sport_schedule
+	Open File "schedule.txt" For Append Mode
+	Display "Enter Sport Schedule Details: "
+	Display "Enter Sport Center Name (Bukit Jalil, Kinrara, Cheras): \nEnter Sport Name (Swimming/Badminton/Football/Archery/Gymnastics/Volleyball/Basketball/Cricket/Tennis/Table Tennis): \nCreate Sport ID: \nEnter Sport Schedule (Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday, Time): "
+	Read sportcenter_name, sport_name, sport_ID, sport_schedule
+	Add sportcenter_name+"\t"+sport_name+"\t"+sport_ID+"\t"+sport_schedule+"\n" in schedule.txt
+	Close File
+End
+
+
+display_admin_function
+Begin
+	Declare display_admin_option
+	Display "Display All Records of:\n1. Coach\n2. Sport\n3. Registered Student"
+	Read display_admin_option
+	While (display_admin_option > 3 OR display_admin_option < 1)
+        	Display "Wrong Choice!\nDisplay All Records of:\n1. Coach\n2. Sport\n3. Registered Student"
+		Read display_admin_option
+	End while
+	if (display_admin_option == 1)
+		call coach_display_admin_function
+	else if (display_admin_option == 2)
+		call sport_display_admin_function
+	else
+		call student_display_admin_function
+	End if
+End
+
+coach_display_admin_function
+Begin
+	Open File "coach.txt" For Read Mode
+  	Display File
+	Close File
+End
+
+sport_display_admin_function
+Begin
+	Open File "sport.txt" For Read Mode
+  	Display File
+	Close File
+End
+
+student_display_admin_function
+Begin
+	Open File "student.txt" For Read Mode
+  	Display File
+	Close File
+End
+
+
+search_admin_function
+Begin
+	Declare search_admin_option
+	Display "Search Specific Records of:\n1. Coach by Coach ID\n2. Coach by Rating\n3. Sport by Sport ID\n4. Student by Student ID"
+	Read search_admin_option
+	While (search_admin_option > 4 or search_admin_option < 1)
+		Display ""Wrong Choice!\nSearch Specific Records of:\n1. Coach by Coach ID\n2. Coach by Rating\n3. Sport by Sport ID\n4. Student by Student ID"
+		Read search_admin_option
+	End while
+	if (search_admin_option == 1)
+		call coachid_search_admin_function
+	else if (search_admin_option == 2)
+		call coachrating_search_admin_function
+	else if (search_admin_option == 3)
+		call sport_search_admin_function
+	else
+		call student_search_admin_function
+	End if
+End
+
+coachid_search_admin_function
+Begin
+	Declare data, line
+	Display "Enter Coach ID to be searched in file: "
+	Read data
+	Open File "coach.txt" For Read Mode
+	LOOP line in File
+		line = line.rstrip()
+		if data in line
+			Display line
+		End if
+	End LOOP
+	Close File
+End
+
+coachrating_search_admin_function
+Begin
+	Declare data, line
+	Display "Enter Rating to be searched in file (1 - 5): "
+	Read data
+	Open File "feedback.txt" For Read Mode
+	LOOP line in File
+		if line startswith data
+			Display line
+		End if
+	End LOOP
+	Close File
+End
+
+sport_search_admin_function
+Begin
+	Declare data, line
+	Display "Enter Sport ID to be searched in file: "
+	Read data
+	Open File "sport.txt" For Read Mode
+	LOOP line in File
+		line = line.rstrip()
+		if data in line
+			Display line
+		End if
+	End LOOP
+	Close File
+End
+
+student_search_admin_function
+Begin
+	Declare data, line
+	Display "Enter Student ID to be searched in file: "
+	Read data
+	Open File "student.txt" For Read Mode
+	LOOP line in File
+		if line startswith data 
+			Display line
+		End if
+	End LOOP
+	Close File
+End
+
+sort_admin_function
+Begin
+	Declare sort_admin_option
+	Display "Sort and Display Records of:\n1. Coaches by Name\n2. Coaches by Hourly Pay Rate\n3. Coaches by Performance"
+	Read sort_admin_option
+	While (sort_admin_option > 3 or sort_admin_option < 1)
+		Display "Wrong Choice!\nSort and Display Records of:\n1. Coaches by Name\n2. Coaches by Hourly Pay Rate\n3. Coaches by Performance"
+		Read sort_admin_option
+	End while
+	if (sort_admin_option == 1)
+		call name_sort_admin_function
+	else if (sort_admin_option == 2)
+		call rate_sort_admin_function
+	else
+		call performance_sort_admin_function
+	End if
+End
+
+name_sort_admin_function
+Begin
+	Declare words, i
+	Open File "coach.txt" For Read Mode
+	words = []
+	LOOP line in file
+		Append line in words
+	End LOOP
+	Close File
+	Sort words
+	LOOP i in words
+		Display i
+	End LOOP
+End
+
+rate_sort_admin_function
+Begin
+	Declare words, i
+	Open File "pay.txt" For Read Mode
+	words = []
+	LOOP line in file
+		Append line in words
+	End LOOP
+	Close File
+	Sort words
+	LOOP i in words
+		Display i
+	End LOOP
+End
+
+performance_sort_admin_function
+Begin
+	Declare words, i
+	Open File "feedback.txt" For Read Mode
+	words = []
+	LOOP line in file
+		Append line in words
+	End LOOP
+	Close File
+	Sort words
+	LOOP i in words
+		Display i
+	End LOOP
+End
+
+
+modify_admin_function
+Begin
+	Declare modify_admin_option
+	Display "Modify Record of:\n1. Coach\n2. Sport\n3. Sport Schedule"
+	Read modify_admin_option
+	While (modify_admin_option > 3 or modify_admin_option < 1)
+		Display "Wrong Choice!\nModify Record of:\n1. Coach\n2. Sport\n3. Sport Schedule"
+		Read modify_admin_option
+	End while
+	if (modify_admin_option == 1)
+		call coach_modify_admin_function
+	else if (modify_admin_option == 2)
+		call sport_modify_admin_function
+	else
+		call schedule_modify_admin_function
+	End if
+End
+
+coach_modify_admin_function
+Begin
+	Declare name_coach, no, words, data, line, cnt, hao
+	Display "Enter Coach's Name to be modified: "
+	Read name_coach
+	no = 0
+	words = []
+	Open File "coach.txt" For Read Mode
+		data = file.readlines()
+	Close File
+	Open File "coach.txt" For Read Mode
+	LOOP line in File
+		Append line in words
+	End LOOP
+	Close File
+	LOOP cnt in words
+		if name_coach in cnt
+			hao = no
+			call coach_modify_admin_second_function(hao,data)
+		else
+			no = no + 1
+		End if
+	End LOOP
+End
+
+coach_modify_admin_second_function(angka,daftar)
+Begin
+	Declare nomor, jawaban, coach_name, coach_ID, coach_join, coach_terminate, coach_phone, coach_address, coach_center, coach_sport
+	nomor = angka
+	jawaban = daftar
+	Open File "coach.txt" For Write Mode
+	Display "Enter Coach Details: "
+	Display "Enter Coach Name: \nEnter Coach ID: \nEnter Coach Date Joined: \nEnter Coach Date Terminated: \nEnter Coach Phone Number: \nEnter Coach Address: \nEnter Coach Center Name (Bukit Jalil, Kinrara, Cheras): \nEnter Coach Sport Name (Swimming/Badminton/Football/Archery/Gymnastics/Volleyball/Basketball/Cricket/Tennis/Table Tennis): "
+	Read coach_name, coach_ID, coach_join, coach_terminate, coach_phone, coach_address, coach_center, coach_sport
+	jawaban[nomor] = coach_name+"\t"+coach_ID+"\t"+coach_join+"\t"+coach_terminate+"\t"+coach_phone+"\t"+coach_address+"\t"+coach_center+"\t"+coach_sport+"\n"
+	Add jawaban in coach.txt
+	call coach_pay_modify_admin_function(coach_name,coach_ID,nomor)
+	Close File
+	Display "You have modified ",coach_name,"'s record"
+End
+
+coach_pay_modify_admin_function(name_coach,ID_coach,numbres)
+Begin
+	Declare nama_guru, ID_guru, urutan, dataku, coach_hourlyrate
+	nama_guru = name_coach
+	ID_guru = ID_coach
+	urutan = numbres
+	Open File "pay.txt" For Read Mode
+		dataku = file.readlines()
+	Close File
+	Open File "pay.txt" For Write Mode
+	Display "Enter Coach Hourly Rate (RM100/h - RM500/h): "
+	Read coach_hourlyrate
+	dataku[urutan] = coach_hourlyrate+"\t"+nama_guru+"\t"+ID_guru+"\n"
+	Add dataku in pay.txt
+	Close File
+End
+
+sport_modify_admin_function
+Begin
+	Declare id_sport, no, words, data, line, cnt, hao
+	Display "Enter Sport's ID to be modified: "
+	Read id_sport
+	no = 0
+	words = []
+	Open File "sport.txt" For Read Mode
+		data = file.readlines()
+	Close File
+	Open File "sport.txt" For Read Mode
+	LOOP line in File
+		Append line in words
+	End LOOP
+	Close File
+	LOOP cnt in words
+		if id_sport in cnt
+			hao = no
+			call sport_modify_admin_second_function(hao,data)
+		else
+			no = no + 1
+		End if
+	End LOOP
+End
+
+sport_modify_admin_second_function(angka,daftar)
+Begin
+	Declare nomor, jawaban, sportcenter_name, sportcenter_ID, sport_name, sport_ID, sport_fee
+	nomor = angka
+    	jawaban = daftar
+	Open File "sport.txt" For Write Mode
+	Display "Enter Sport Details: "
+	Display "Enter Sport Center Name (Bukit Jalil, Kinrara, Cheras): \nEnter Sport Center ID (Bukit Jalil - BJ, Kinrara - KR, Cheras - CS): \nEnter Sport Name (Swimming/Badminton/Football/Archery/Gymnastics/Volleyball/Basketball/Cricket/Tennis/Table Tennis): \nEnter Sport ID: \nEnter Sport Fee (RM/month): "
+	Read sportcenter_name, sportcenter_ID, sport_name, sport_ID, sport_fee
+	jawaban[nomor] = sportcenter_name+"\t"+sportcenter_ID+"\t"+sport_name+"\t"+sport_ID+"\t"+sport_fee+"\n"
+	Add jawaban in sport.txt
+	Close File
+	Display "You have modified ",sport_ID," record"
+End
+
+schedule_modify_admin_function
+Begin
+	Declare id_sport2, no, words, data, line, cnt, hao
+	Display "Enter Sport's ID to be modified: "
+	Read id_sport2
+	no = 0
+	words = []
+	Open File "schedule.txt" For Read Mode
+		data = file.readlines()
+	Close File
+	Open File "schedule.txt" For Read Mode
+	LOOP line in File
+		Append line in words
+	End LOOP
+	Close File
+	LOOP cnt in words
+		if id_sport2 in cnt
+			hao = no
+			call schedule_modify_admin_second_function(hao,data)
+		else
+			no = no + 1
+		End if
+	End LOOP
+End
+
+schedule_modify_admin_second_function(angka,daftar)
+Begin
+	Declare nomor, jawaban, sportcenter_name, sport_name, sport_ID, sport_schedule
+	nomor = angka
+    	jawaban = daftar
+	Open File "schedule.txt" For Write Mode
+	Display "Enter Sport Schedule Details: "
+	Display "Enter Sport Center Name (Bukit Jalil, Kinrara, Cheras): \nEnter Sport Name (Swimming/Badminton/Football/Archery/Gymnastics/Volleyball/Basketball/Cricket/Tennis/Table Tennis): \nCreate Sport ID: \nEnter Sport Schedule (Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday, Time): "
+	Read sportcenter_name, sport_name, sport_ID, sport_schedule
+	jawaban[nomor] = sportcenter_name+"\t"+sport_name+"\t"+sport_ID+"\t"+sport_schedule+"\n"
+	Add jawaban in schedule.txt
+	Close File
+	Display "You have modified ",sport_ID," record"
+End
+
+
+
+student_function
+Begin
+	Declare login_user
+	Display "\t\tWelcome to Our Student Platform. Please login to access the functionalities!\nEnter your username: "
+	Read login_user
+	call student_first_login(login_user)
+End
+
+
+student_first_login(student_username)
+Begin
+	Declare line, login_pass
+	Open File "student.txt" For Read Mode
+	LOOP line in File
+		line = line.rstrip()
+		if student_username in line
+			Display "Enter your password: "
+			Read login_pass
+			call student_second_login(line,login_pass,student_username)
+		End if
+	End LOOP
+	Close File
+End
+
+student_second_login(baris,student_password,siswa_username)
+Begin
+	Declare siswa_user
+	siswa_user = siswa_username
+	if student_password in baris
+		call student_second_function(siswa_user)
+	else
+		Display "Your Password or Username is Incorrect"
+	End if
+End
+
+student_second_function(username_siswa)
+Begin
+	Declare user_siswa, student_option
+	user_siswa = username_siswa
+	Display "Select one specific function:\n1. View Detail of Coach\n2. View Detail of Self-Record\n3. View Detail of Sport Schedule\n4. Modify Self-Record\n5. Provide Feedback & Rating\n6. Exit"
+	Read student_option
+	While (student_option > 6 or student_option < 1)
+		Display "Wrong Choice!\nSelect one specific function:\n1. View Detail of Coach\n2. View Detail of Self-Record\n3. View Detail of Sport Schedule\n4. Modify Self-Record\n5. Provide Feedback & Rating\n6. Exit"
+		Read student_option
+	End while
+	if (student_option == 1)
+		call coach_student_function
+	else if (student_option == 2)
+		call selfrecord_student_function(user_siswa)
+	else if (student_option == 3)
+		call schedule_student_function(user_siswa)
+	else if (student_option == 4)
+		call modify_student_function(user_siswa)
+	else if (student_option == 5)
+		call feedback_student_function
+	else
+		call main_menu_function
+	End if
+End
+
+
+coach_student_function
+Begin
+	Open File "coach.txt" For Read Mode
+  	Display File
+	Close File
+End
+
+
+selfrecord_student_function(username_murid)
+Begin
+	Declare line
+	Open File "student.txt" For Read Mode
+	LOOP line in File
+		line = line.rstrip()
+		if username_murid in line
+			Display line
+		End if
+	End LOOP
+	Close File
+End
+
+
+schedule_student_function(username_murid)
+Begin
+	Declare line, baris
+	Open File "student.txt" For Read Mode
+	LOOP line in File
+		line = line.rstrip()
+		if username_murid in line
+			baris = line
+		End if
+	End LOOP
+	Close File
+	Open Myfile "schedule.txt" For Read Mode
+	if "Bukit Jalil" in baris
+        	if "Swimming" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Bukit Jalil" in line
+                    			if "Swimming" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Badminton" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Bukit Jalil" in line
+                    			if "Badminton" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Football" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Bukit Jalil" in line
+                    			if "Football" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+        	else if "Archery" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Bukit Jalil" in line
+                    			if "Archery" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Gymnastics" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Bukit Jalil" in line
+                    			if "Gymnastics" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Volleyball" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Bukit Jalil" in line
+                    			if "Volleyball" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Basketball" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Bukit Jalil" in line
+                    			if "Basketball" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Cricket" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Bukit Jalil" in line
+                    			if "Cricket" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Tennis" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Bukit Jalil" in line
+                    			if "Tennis" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Table Tennis" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Bukit Jalil" in line
+                    			if "Table Tennis" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+        	else:
+            		Display "There is no schedule for your registered sport."
+		End if
+	else if "Kinrara" in baris
+		if "Swimming" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Kinrara" in line
+                    			if "Swimming" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Badminton" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Kinrara" in line
+                    			if "Badminton" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Football" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Kinrara" in line
+                    			if "Football" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+        	else if "Archery" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Kinrara" in line
+                    			if "Archery" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Gymnastics" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Kinrara" in line
+                    			if "Gymnastics" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Volleyball" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Kinrara" in line
+                    			if "Volleyball" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Basketball" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Kinrara" in line
+                    			if "Basketball" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Cricket" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Kinrara" in line
+                    			if "Cricket" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Tennis" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Kinrara" in line
+                    			if "Tennis" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Table Tennis" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Kinrara" in line
+                    			if "Table Tennis" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+        	else:
+            		Display "There is no schedule for your registered sport."
+		End if
+	else if "Cheras" in baris
+		if "Swimming" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Cheras" in line
+                    			if "Swimming" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Badminton" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Cheras" in line
+                    			if "Badminton" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Football" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Cheras" in line
+                    			if "Football" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+        	else if "Archery" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Cheras" in line
+                    			if "Archery" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Gymnastics" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Cheras" in line
+                    			if "Gymnastics" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Volleyball" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Cheras" in line
+                    			if "Volleyball" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Basketball" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Cheras" in line
+                    			if "Basketball" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Cricket" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Cheras" in line
+                    			if "Cricket" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Tennis" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Cheras" in line
+                    			if "Tennis" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+		else if "Table Tennis" in baris
+            		LOOP line in Myfile
+                		line= line.rstrip()
+                		if "Cheras" in line
+                    			if "Table Tennis" in line
+                       	 			Display line
+					End if
+				End if
+			End LOOP
+        	else:
+            		Display "There is no schedule for your registered sport."
+		End if
+	else:
+		Display "Your registered sport center is not found."
+	End if
+	Close File
+End
+
+
+modify_student_function(username_murid)
+Begin
+	Declare nama_pengguna, no, words, data, line, cnt, hao
+	nama_pengguna = username_murid
+	no = 0
+	words = []
+	Open File "student.txt" For Read Mode
+		data = file.readlines()
+	Close File
+	Open File "student.txt" For Read Mode
+	LOOP line in File
+		Append line in words
+	End LOOP
+	Close File
+	LOOP cnt in words
+		if nama_pengguna in cnt
+			hao = no
+			call modify_student_second_function(hao,data)
+		else
+			no = no + 1
+		End if
+	End LOOP
+End
+
+modify_student_second_function(angka,daftar)
+Begin
+	Declare nomor, jawaban, student_user, student_pass, student_ID, student_name, student_dob, student_address, student_phone, student_sport, student_center
+	nomor = angka
+    	jawaban = daftar
+	Open File "student.txt" For Write Mode
+	Display "Create your username: \nCreate your password: \nCreate Your Student ID (6 digits): \nEnter Your Name: \nEnter Your Date of Birth (DD/MM/YYYY): \nEnter Your Address: \nEnter Your Phone Number: \nEnter Your Chosen Sport (Swimming/Badminton/Football/Archery/Gymnastics/Volleyball/Basketball/Cricket/Tennis/Table Tennis): \nEnter Your Chosen Sport Center: "
+	Read student_user, student_pass, student_ID, student_name, student_dob, student_address, student_phone, student_sport, student_center
+	jawaban[nomor] = student_id+"\t"+student_name+"\t"+student_dob+"\t"+student_address+"\t"+student_phone+"\t"+student_sport+"\t"+student_center+"\t"+student_user+"\t"+student_pass+"\n"
+	Add jawaban in student.txt
+	Close File
+	Display "You have modified your record"
+End
+
+
+feedback_student_function
+Begin
+	Declare feedback_name, feedback_id, feedback_star, feedback_comment
+	Open File "feedback.txt" For Append Mode
+	Display "Kindly provide your feedback: "
+	Display "Enter Coach Name: \nEnter Coach ID: \nEnter Rating for Coach (1-Very Poor, 5-Excellent): \nEnter Feedback: "
+	Read feedback_name, feedback_id, feedback_star, feedback_comment
+	Add feedback_star+"\t"+feedback_name+"\t"+feedback_id +"\t"+feedback_comment+"\n" in feedback.txt
+	Close File
+	Display "Thank you for giving us feedback"
+End
+
+
+
+nonstudent_function
+Begin
+	Declare nonstudent_option
+	Display "\t\t*****REAL CHAMPIONS SPORT  ACADEMY*****\nSelect one specific function:\n1. View Detail of Sport\n2. View Detail of Sport Schedule\n3. Register\n4. Exit"
+	Read nonstudent_option
+	While (nonstudent_option > 4 or nonstudent_option < 1)
+		Display "Wrong Choice!\nSelect one specific function:\n1. View Detail of Sport\n2. View Detail of Sport Schedule\n3. Register\n4. Exit"
+		Read nonstudent_option
+	End while
+	if (nonstudent_option == 1)
+		call sport_nonstudent_function
+	else if (nonstudent_option == 2)
+		call schedule_nonstudent_function
+	else if (nonstudent_option == 3)
+		call register_nonstudent_function
+	else
+		call main_menu_function
+	End if
+End
+
+
+sport_nonstudent_function
+Begin
+	Open File "sport.txt" For Read Mode
+  	Display File
+	Close File
+End
+
+
+schedule_nonstudent_function
+Begin
+	Open File "schedule.txt" For Read Mode
+  	Display File
+	Close File
+End
+
+
+register_nonstudent_function
+Begin
+	Declare jawaban, student_user, student_pass, student_ID, student_name, student_dob, student_address, student_phone, student_sport, student_center
+	Open File "student.txt" For Append Mode
+	Display "Create your username: \nCreate your password: \nCreate Your Student ID (6 digits): \nEnter Your Name: \nEnter Your Date of Birth (DD/MM/YYYY): \nEnter Your Address: \nEnter Your Phone Number: \nEnter Your Chosen Sport (Swimming/Badminton/Football/Archery/Gymnastics/Volleyball/Basketball/Cricket/Tennis/Table Tennis): \nEnter Your Chosen Sport Center: "
+	Read student_user, student_pass, student_ID, student_name, student_dob, student_address, student_phone, student_sport, student_center
+	Add student_id+"\t"+student_name+"\t"+student_dob+"\t"+student_address+"\t"+student_phone+"\t"+student_sport+"\t"+student_center+"\t"+student_user+"\t"+student_pass+"\n" in student.txt
+	Close File
+	Display "You have created your account successfully!"
+End
+
+
+
+Begin
+	Declare option
+	Display "Do you want to continue? '0' to continue or any other numbers to terminate: "
+	Read option
+	While (option == 0)
+    		call main_menu_function
+    		Display "Do you want to continue? '0' to continue or any other numbers to terminate: "
+		Read option
+	End while
+	Display "GOOD BYE!"
+End
